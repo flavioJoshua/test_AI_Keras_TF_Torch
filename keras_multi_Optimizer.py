@@ -1,6 +1,7 @@
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Flatten
+import  numpy as  np
 
 # Definiamo un modello di rete neurale semplice
 # Define a simple neural network model
@@ -10,6 +11,17 @@ model = Sequential([
     Dense(10, activation='softmax')  # Output layer with 10 units (one for each digit)
 ])
 
+
+""" 
+model = Sequential([
+    Flatten(input_shape=(28, 28)),  # Flatten the 28x28 images
+    Normalization(),  # Normalize the pixel values
+    Dense(128, activation='relu'),  # Dense layer with 128 units and ReLU activation
+    Dense(10, activation='softmax')  # Output layer with 10 units (one for each digit)
+])
+ """
+
+
 # Carichiamo i dati di addestramento e test
 (x_train, y_train), (x_test, y_test) = tf.keras.datasets.mnist.load_data()
 
@@ -17,6 +29,10 @@ model = Sequential([
 y_train = tf.keras.utils.to_categorical(y_train, num_classes=10)
 y_test = tf.keras.utils.to_categorical(y_test, num_classes=10)
 
+
+
+""" per  test  funziona è equivalente """
+test_val=np.reshape(x_train,(x_train.shape[0],28 * 28  ))
 
 
 # Addestriamo il modello per ogni ottimizzatore
