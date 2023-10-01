@@ -2,24 +2,47 @@ import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Flatten
 import  numpy as  np
+from tensorflow.keras.layers import Normalization
+from tensorflow.keras.layers import BatchNormalization
 
-# Definiamo un modello di rete neurale semplice
+
+
+
+
+
+print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
+physical_devices = tf.config.list_physical_devices('GPU')
+tf.config.experimental.set_visible_devices(physical_devices[0], 'GPU')  # Use the first GPU
+
+physical_devices = tf.config.list_physical_devices('GPU')
+if len(physical_devices) > 0:
+    tf.config.experimental.set_memory_growth(physical_devices[0], True)
+    print('Running on GPU')
+else:
+    print('Running on CPU')
+
+
+
+
+""" # Definiamo un modello di rete neurale semplice
 # Define a simple neural network model
 model = Sequential([
     Flatten(input_shape=(28, 28)),  # Flatten the 28x28 images
     Dense(128, activation='relu'),  # Dense layer with 128 units and ReLU activation
     Dense(10, activation='softmax')  # Output layer with 10 units (one for each digit)
-])
+]) """
 
 
-""" 
+
 model = Sequential([
     Flatten(input_shape=(28, 28)),  # Flatten the 28x28 images
-    Normalization(),  # Normalize the pixel values
-    Dense(128, activation='relu'),  # Dense layer with 128 units and ReLU activation
+    BatchNormalization(),  # Normalize the pixel values
+    Dense(512, activation='relu'),  # Dense layer with 512 units and ReLU activation
+    Dense(512, activation='relu'),  # Dense layer with 512 units and ReLU activation
     Dense(10, activation='softmax')  # Output layer with 10 units (one for each digit)
 ])
- """
+
+
 
 
 # Carichiamo i dati di addestramento e test
