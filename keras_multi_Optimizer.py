@@ -12,6 +12,7 @@ from tensorflow.keras.layers import BatchNormalization
 
 print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
 physical_devices = tf.config.list_physical_devices('GPU')
+
 tf.config.experimental.set_visible_devices(physical_devices[0], 'GPU')  # Use the first GPU
 
 physical_devices = tf.config.list_physical_devices('GPU')
@@ -36,9 +37,9 @@ model = Sequential([
 
 model = Sequential([
     Flatten(input_shape=(28, 28)),  # Flatten the 28x28 images
-    BatchNormalization(),  # Normalize the pixel values
+    BatchNormalization(),  # Normalize the pixel values  senza   questo non mi da  il valore di Loss Func
     Dense(512, activation='relu'),  # Dense layer with 512 units and ReLU activation
-    Dense(512, activation='relu'),  # Dense layer with 512 units and ReLU activation
+    # Dense(512, activation='relu'),  # Dense layer with 512 units and ReLU activation
     Dense(10, activation='softmax')  # Output layer with 10 units (one for each digit)
 ])
 
@@ -60,17 +61,17 @@ test_val=np.reshape(x_train,(x_train.shape[0],28 * 28  ))
 
 # Addestriamo il modello per ogni ottimizzatore
 for optimizer in [
-    tf.keras.optimizers.SGD(),
-    tf.keras.optimizers.SGD(momentum=0.9),
-    tf.keras.optimizers.Adadelta(),
-    tf.keras.optimizers.RMSprop(),
-    tf.keras.optimizers.Adam(),
-    tf.keras.optimizers.Adamax(),
-    tf.keras.optimizers.Nadam()
+    tf.keras.optimizers.SGD() #,
+    # tf.keras.optimizers.SGD(momentum=0.9),
+    # tf.keras.optimizers.Adadelta(),
+    # tf.keras.optimizers.RMSprop(),
+    # tf.keras.optimizers.Adam(),
+    # tf.keras.optimizers.Adamax(),
+    # tf.keras.optimizers.Nadam()
 ]:
     model.compile(optimizer=optimizer, loss='categorical_crossentropy', metrics=['accuracy'])
-    model.fit(x_train, y_train, epochs=10)
-    score = model.evaluate(x_test, y_test, verbose=0)
+    model.fit(x_train, y_train, epochs=3)
+    score = model.evaluate(x_test, y_test, verbose=2)
     print(f"Optimizer: {optimizer.name}, Accuracy: {score[1]}%")
 
 
