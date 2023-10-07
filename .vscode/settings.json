@@ -1,0 +1,11 @@
+{
+    "python.analysis.extraPaths": [
+        "/home/flavio/.conda/envs/yolo3.10/lib/python3.10/site-packages/keras/api/_v2",
+        "/home/flavio/.conda/envs/yolo3.10/lib/python3.10/site-packages/tensorflow_estimator/python/estimator/api/_v2",
+        "/home/flavio/.conda/envs/yolo3.10/lib/python3.10/site-packages/tensorboard/summary/_tf",
+        "/home/flavio/.conda/envs/yolo3.10/lib/python3.10/site-packages/tensorflow",
+        "/home/flavio/.conda/envs/yolo3.10/lib/python3.10/site-packages/tensorflow/_api/v2"
+    ],
+    "python.analysis.stubPath": "typings"
+
+}
