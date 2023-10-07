@@ -14,7 +14,7 @@ model = SentenceTransformer('clip-ViT-B-32').to(device=device)
 #Encode an image:
 img_emb = model.encode(Image.open('img.png'))
 
-labels=['green grass', 'A cat on a table', 'A picture of London at night']
+labels=['prato verde', 'golf', 'foresta']
 #Encode text descriptions
 text_emb = model.encode(labels)
 
