@@ -10,6 +10,7 @@ if torch.cuda.is_available() and torch.cuda.device_count() > 0:
 else:
     device = torch.device("cpu")
 
+# FIXME:   troppo  diverso dall originale non dovrebbe  funzionare almeno per il mancato passaggio delle etichette  al pre trained 
 # Caricare il dataset
 dataset = load_dataset("sem_eval_2018_task_1", "subtask5.english")
 
