@@ -7,6 +7,16 @@
         "/home/flavio/.conda/envs/yolo3.10/lib/python3.10/site-packages/tensorflow/_api/v2"
     ],
     "python.analysis.stubPath": "typings",
-    "python.defaultInterpreterPath": "/opt/conda/bin/python"
+    "python.defaultInterpreterPath": "/opt/conda/bin/python",
+    "todo-tree.general.tags": [
+        "BUG",
+        "HACK",
+        "FIXME",
+        "TODO",
+        "XXX",
+        "[ ]",
+        "[x]",
+        "INFORM"
+    ]
 
 }

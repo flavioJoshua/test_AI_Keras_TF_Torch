@@ -6,7 +6,7 @@ if torch.cuda.is_available() and torch.cuda.device_count() > 0:
 else:
     device = torch.device("cpu")  # Sceglie la CPU se CUDA non è disponibile o non ci sono GPU
 
-
+# INFORM: funziona con la  GPU   meglio usare  export xport CUDA_VISIBLE_DEVICES=0  altrimenti con  due    GPU  va in split di carico 
 
 # %%
 from datasets import load_dataset
@@ -74,7 +74,8 @@ print(_testo)
 encoded_dataset.set_format("torch")
 
 
-# %%
+
+
 from transformers import AutoModelForSequenceClassification
 
 model = AutoModelForSequenceClassification.from_pretrained("bert-base-uncased",
@@ -84,11 +85,11 @@ model = AutoModelForSequenceClassification.from_pretrained("bert-base-uncased",
                                                            label2id=label2id).to(device)
 
 
-# %%
+
+
 batch_size = 8
 metric_name = "f1"
 
-# %%
 from transformers import TrainingArguments, Trainer
 
 args = TrainingArguments(
@@ -137,11 +138,11 @@ def compute_metrics(p: EvalPrediction):
         labels=p.label_ids)
     return result
 
-encoded_dataset['train'][0]['labels'].type()
+print(encoded_dataset['train'][0]['labels'].type())
 
-encoded_dataset['train']['input_ids'][0]
+print(encoded_dataset['train']['input_ids'][0])
 
-#forward pass
+#forward pass  senza   GPU ...   sostituito
 #outputs = model(input_ids=encoded_dataset['train']['input_ids'][0].unsqueeze(0), labels=encoded_dataset['train'][0]['labels'].unsqueeze(0)).to(device)
 
 # Assicurati che sia il modello che gli input siano sul dispositivo corretto
@@ -163,7 +164,6 @@ outputs = model(input_ids=input_ids, labels=labels)
 print(outputs)
 
 
-# %%
 trainer = Trainer(
     model,
     args,
@@ -173,11 +173,14 @@ trainer = Trainer(
     compute_metrics=compute_metrics
 )
 
-# %%
+
+
+
 trainer.train()
 
 
-# %%
+
+
 trainer.evaluate()
 
 text = "I'm happy I can finally train a model for multi-label classification"
