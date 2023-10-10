@@ -63,16 +63,14 @@ print(example.keys())
 # %%
 tokenizer.decode(example['input_ids'])
 
-# %%
+
 example['labels']
 
-# %%
 _testo=[id2label[idx] for idx, label in enumerate(example['labels']) if label == 1.0]
 print(_testo)
-# %% [markdown]
-# Finally, we set the format of our data to PyTorch tensors. This will turn the training, validation and test sets into standard PyTorch [datasets](https://pytorch.org/docs/stable/data.html).
 
-# %%
+
+
 encoded_dataset.set_format("torch")
 
 
@@ -108,7 +106,6 @@ args = TrainingArguments(
 )
 
 
-# %%
 from sklearn.metrics import f1_score, roc_auc_score, accuracy_score
 from transformers import EvalPrediction
 import torch
@@ -140,10 +137,6 @@ def compute_metrics(p: EvalPrediction):
         labels=p.label_ids)
     return result
 
-# %% [markdown]
-# Let's verify a batch as well as a forward pass:
-
-# %%
 encoded_dataset['train'][0]['labels'].type()
 
 encoded_dataset['train']['input_ids'][0]
