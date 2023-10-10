@@ -6,6 +6,7 @@
         "/home/flavio/.conda/envs/yolo3.10/lib/python3.10/site-packages/tensorflow",
         "/home/flavio/.conda/envs/yolo3.10/lib/python3.10/site-packages/tensorflow/_api/v2"
     ],
-    "python.analysis.stubPath": "typings"
+    "python.analysis.stubPath": "typings",
+    "python.defaultInterpreterPath": "/opt/conda/bin/python"
 
 }
