@@ -8,21 +8,16 @@ else:
 
 # INFORM: funziona con la  GPU   meglio usare  export xport CUDA_VISIBLE_DEVICES=0  altrimenti con  due    GPU  va in split di carico 
 
-# %%
+
 from datasets import load_dataset
 
 dataset = load_dataset("sem_eval_2018_task_1", "subtask5.english")
 
 
-
-# %%
-
 print(dataset )
 
-# %% [markdown]
-# Let's check the first example of the training split:
 
-# %%
+
 example = dataset['train'][0]
 print(example)
 
@@ -53,14 +48,14 @@ def preprocess_data(examples):
 
   return encoding
 
-# %%
+
 encoded_dataset = dataset.map(preprocess_data, batched=True, remove_columns=dataset['train'].column_names)
 
-# %%
+
 example = encoded_dataset['train'][0]
 print(example.keys())
 
-# %%
+
 tokenizer.decode(example['input_ids'])
 
 
@@ -174,12 +169,7 @@ trainer = Trainer(
 )
 
 
-
-
 trainer.train()
-
-
-
 
 trainer.evaluate()
 
@@ -191,7 +181,7 @@ encoding = {k: v.to(trainer.model.device) for k,v in encoding.items()}
 outputs = trainer.model(**encoding).to(device)
 
 logits = outputs.logits
-logits.shape
+print   (f"shape  del  logits: {logits.shape  }" )
 
 # apply sigmoid + threshold
 sigmoid = torch.nn.Sigmoid()
@@ -201,5 +191,4 @@ predictions[np.where(probs >= 0.5)] = 1
 # turn predicted id's into actual label names
 predicted_labels = [id2label[idx] for idx, label in enumerate(predictions) if label == 1.0]
 print(predicted_labels)
-
 
