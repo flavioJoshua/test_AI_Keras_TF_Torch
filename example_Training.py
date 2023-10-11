@@ -26,3 +26,18 @@ _probs_adj=np.copy(probs)
 _probs_adj[ np.where(probs  >=0.5)]=1
 # Stampa le probabilità calcolate
 print("Calculated Probabilities:  {0} ,  raw  possibilities : {1} ".format(_probs_adj  , probs   ))
+
+
+import torch
+
+# Crea un tensore di esempio con una dimensione singola
+tensor = torch.tensor([[[1, 2, 3], [4, 5, 6]]])
+# Utilizza .squeeze() per rimuovere le dimensioni di lunghezza 1
+squeezed_tensor = tensor.squeeze()
+
+# Il tensore originale non è modificato
+print("Tensor originale:", tensor)
+
+# Il nuovo tensore ha le dimensioni di lunghezza 1 rimosse
+print("Tensor 'spremuto':", squeezed_tensor)
+

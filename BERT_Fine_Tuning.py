@@ -59,7 +59,7 @@ print(example.keys())
 tokenizer.decode(example['input_ids'])
 
 
-example['labels']
+print(example['labels'])
 
 _testo=[id2label[idx] for idx, label in enumerate(example['labels']) if label == 1.0]
 print(_testo)
