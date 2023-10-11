@@ -1,4 +1,5 @@
 import torch
+import  numpy as np
 
 # Inizializza un tensore di logits come esempio
 # I logits sono solitamente ottenuti come output da un modello di classificazione prima dell'attivazione
@@ -17,5 +18,11 @@ cpu_logits = squeezed_logits.cpu()
 # Calcola le probabilità applicando la funzione Sigmoid ai logits
 probs = sigmoid(cpu_logits)
 
+
+
+
+_probs_adj=np.copy(probs) 
+
+_probs_adj[ np.where(probs  >=0.5)]=1
 # Stampa le probabilità calcolate
-print("Calculated Probabilities:", probs)
+print("Calculated Probabilities:  {0} ,  raw  possibilities : {1} ".format(_probs_adj  , probs   ))
