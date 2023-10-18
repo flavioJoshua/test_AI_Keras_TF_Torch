@@ -52,12 +52,12 @@ build_and_train_model(tf.keras.optimizers.Adam(lr=0.001))
 # The model consists of two layers and is compiled with the given optimizer.
 # The function then trains the model using the `fit` method.
 
-import sys
-sys.exit("Messaggio di terminazione")
+# import sys
+# sys.exit("Messaggio di terminazione")
 
 
 
-#FIXME: 2  non funziona  mentre il file  TF_GridSearch2  che è quasi  uguale  funziona 
+#INFORM: 2  OK funziona  
 
 # from kerastuner.tuners import GridSearch
 from keras_tuner.tuners  import gridsearch  #  da  usare .... al posto di quello sopra
@@ -84,7 +84,7 @@ tuner = gridsearch.GridSearch(
     objective='val_accuracy',
     max_trials=5,
     executions_per_trial=3,
-    directory='my_dir',
+    directory='my_dir3',  # WARM: se non cambi la directory e la vede piena  skippa il processo 
     project_name='helloworld'
 )
 

@@ -38,7 +38,7 @@ tuner = RandomSearch(
     build_model,
     objective='val_accuracy',
     max_trials=5,
-    directory='my_dir',
+    directory='my_dir', # WARM: se non cambi la directory e la vede piena  skippa il processo 
     project_name='mnist_kt')
 
 # Perform hyperparameter search

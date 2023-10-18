@@ -16,7 +16,9 @@
         "XXX",
         "[ ]",
         "[x]",
-        "INFORM"
-    ]
+        "INFORM",
+        "WARM"
+    ],
+    "todo-tree.general.tagGroups": {}
 
 }
