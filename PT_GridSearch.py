@@ -47,30 +47,6 @@ class SimpleNN(nn.Module):
 
 
 
-# # Training function
-# def train_model(model, optimizer):
-#     model.to(device)  # Sposta il modello sulla GPU
-#     print(f"Model device: {next(model.parameters()).device}")  # Verifica dispositivo modello
-
-#     criterion = nn.CrossEntropyLoss()
-#     for epoch in range(5):
-#         for i, (images, labels) in enumerate(train_loader):
-#             images, labels = images.to(device), labels.to(device)  # Sposta i dati e le etichette sulla GPU
-#             # print(f"Data device: {images.device}")  # Verifica dispositivo dati
-
-#             optimizer.zero_grad()
-#             outputs = model(images)
-#             loss = criterion(outputs, labels)
-#             loss.backward()
-#             optimizer.step()
-
-#             if i % 100 == 0:  # Stampa la loss ogni 100 batch
-#                 print(f"Epoch [{epoch+1}/5], Step [{i+1}/{len(train_loader)}], Loss: {loss.item():.4f}")
-
-# # ... (il resto del codice rimane invariato)
-
-
-
 # Modifica la funzione train_model per includere la validazione
 def train_model(model, optimizer, train_loader, val_loader):
     model.to(device)  # Sposta il modello sulla GPU
