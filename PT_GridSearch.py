@@ -54,8 +54,10 @@ def train_model(model, optimizer, train_loader, val_loader):
     criterion = nn.CrossEntropyLoss()
     for epoch in range(5):
         # Training
+        conta=0
         model.train()
         for i, (images, labels) in enumerate(train_loader):
+            conta=i
             images, labels = images.to(device), labels.to(device)
             optimizer.zero_grad()
             outputs = model(images)
